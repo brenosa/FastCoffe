@@ -5,16 +5,21 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
-          home
+          <ImageSlider></ImageSlider>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
 
+import ImageSlider from "../components/ImageSlider";
+
+export default {
+  components: {
+    ImageSlider
+  }
 };
 </script>
 

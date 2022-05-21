@@ -1,5 +1,5 @@
 body {
-  background-color: #EEEEEE;
+  background-color: #483C3C;
   letter-spacing: unset;
   font-size: 1rem;
   color: $black-color;
@@ -7,7 +7,7 @@ body {
 }
 
 .main{
-    background: #FFFFFF;
+    background: #CDCDCD;
     position: relative;
     z-index: 3;
 }
@@ -15,7 +15,6 @@ body {
 .main-raised{
     margin: -60px 30px 0px;
     border-radius: $border-radius-base * 2;
-    @include shadow-16dp();
 }
 
 .wrapper{

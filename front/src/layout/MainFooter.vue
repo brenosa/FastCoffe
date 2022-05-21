@@ -1,19 +1,20 @@
 <template>
-  <footer class="footer" :class="{ [`footer-${type}`]: type }" :data-background-color="backgroundColor">
+  <footer class="footer" :class="{ [`footer-${type}`]: type }">
     <div class="container">
-      Aluno: Breno de Almeida Sá
+      <span class="foot-text"> Criado por: Breno de Almeida Sá</span>
     </div>
   </footer>
 </template>
 <script>
 export default {
   props: {
-    backgroundColor: String,
     type: String
   },
-  data() {
-  }
 };
 </script>
+
 <style>
+.foot-text {
+  color: #CDCDCD
+}
 </style>

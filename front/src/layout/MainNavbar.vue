@@ -1,5 +1,5 @@
 <template>
-  <md-toolbar id="toolbar" md-elevation="0" class="md-absolute" :class="extraNavClasses">
+  <md-toolbar id="toolbar" md-elevation="0" class="md-absolute">
   <a href="#/"><img src="../assets/img/logo_fast_coffee.png"  alt="Fast Coffee" width="80"></a>
   
     <div class="md-toolbar-row md-collapse-lateral">   
