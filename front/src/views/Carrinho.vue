@@ -5,6 +5,7 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
+          carrinho
         </div>
       </div>    
     </div>
