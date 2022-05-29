@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   data() {
@@ -49,12 +50,29 @@ export default {
         categoria: "espresso"
       }]
     }
+  },
+  created() {
+    this.getProduct();
+  },
+  methods: {
+    getProduct() {
+      console.log(process.env.VUE_APP_SERVER_URL)
+      axios
+        .get(process.env.VUE_APP_SERVER_URL + "product")
+        .then((res) => {
+          this.cardapio = res.data.cardapio;      
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-h3, span{
+h3,
+span {
   color: white
 }
 
