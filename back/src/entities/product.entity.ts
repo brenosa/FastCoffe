@@ -9,6 +9,11 @@ export class Product {
     name: string;
 
     @Column({ type: 'varchar', length: 300 })
-    description: string;  
-   
+    description: string;
+
+    @Column({ type: 'varchar', length: 300 })
+    imageLocation: string; 
+    
+    @Column({ type: 'varchar', length: 300 })
+    category: string;     
 }

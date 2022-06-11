@@ -6,9 +6,8 @@ import { Product } from "../entities/product.entity";
 @Injectable()
 export class ProductRepository {
     async getAllProducts(): Promise<Product[]> {
-        const products = await getRepository(Product).find();
-        return products;
+        return await getRepository(Product).find();
     }
 
-
+    /* async addProduct(product: Product): Promise<Product> { } */
 }

@@ -1,6 +1,8 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { join } from 'path';
+import { Cost } from '../entities/cost.entity';
+import { Menu } from '../entities/menu.entity';
 import { Product } from '../entities/product.entity';
+import { Stock } from '../entities/stock.entity';
 
 class ConfigService {
   constructor(private env: { [k: string]: string | undefined }) { }
@@ -27,10 +29,11 @@ class ConfigService {
       username: this.getValue('POSTGRES_USER'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
-      entities: [Product],
+      entities: [Product, Cost, Menu, Stock],
       ssl: { rejectUnauthorized: false },
       autoLoadEntities: true,
-      synchronize: Boolean(this.getValue('IS_DEV')),
+      //synchronize: Boolean(this.getValue('IS_DEV')),
+      //dropSchema: Boolean(this.getValue('IS_DEV')),
       logging: true
     };
   }
