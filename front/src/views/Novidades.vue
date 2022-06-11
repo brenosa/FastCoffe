@@ -5,7 +5,7 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
-          novidades
+          <h2>Aguarde, em breve teremos novidades!</h2>
         </div>
       </div>    
     </div>

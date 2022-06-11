@@ -5,31 +5,36 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
+          <div class="center">
+            <h1>Cardápio</h1>
+          </div>
+          <div class="center" v-if="loading">
+            <md-progress-spinner class="md-accent" md-mode="indeterminate"></md-progress-spinner>
+          </div>
           <div class="item" v-for="product in menu" :key="product.id">
             <div class="features ">
               <div class="md-layout">
                 <div class="md-layout-item md-size-10">
-                  <img :src="product.imageLocation" :alt="product.imageLocation">
+                  <img src="../assets/img/espresso.webp" :alt="product.imagelocation">
                 </div>
                 <div class="md-layout-item md-size-60">
-                  <h3>{{ product.name }}</h3>
-                  <span>{{ product.description }}</span>
+                  <h3 class="title">{{ product.name }}</h3>
+                  <p class="description">{{ product.description }}</p>
+                  <p class="attribute">R${{ product.cost }} cada</p>
                 </div>
                 <div class="md-layout-item md-size-10 center input">
-                  <input class="vertical-center" :id="product.id" type="number" v-model="product.quantity"
-                    placeholder="0" min="0" />
+                  <h4 class="title">Quantidade</h4>
+                  <input :id="product.id" type="number" v-model="product.quantity" placeholder="0" min="0" />
                 </div>
                 <div class="md-layout-item md-size-20 center">
-                  <h4><strong>Valor unitário</strong></h4>
-                  <span class="cost">{{ product.cost }}</span>
-                  <h4><strong>Total</strong></h4>
-                  <span class="cost">{{ (product.cost * (product.quantity) || "-") }}</span>
+                  <h4 class="title">Total</h4>
+                  <span class="attribute">R${{ (product.cost * (product.quantity) || "-") }}</span>
                 </div>
               </div>
             </div>
           </div>
-          <md-button slot="buttons" href="javascript:void(0)" class="botao-finalizar" @click="getOrder">
-            Finalizar pedido
+          <md-button slot="buttons" href="javascript:void(0)" class="order" @click="getOrder">
+            Revisar pedido
           </md-button>
         </div>
       </div>
@@ -43,6 +48,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      loading: true,
       menu: [],
       order: []
     }
@@ -52,12 +58,14 @@ export default {
   },
   methods: {
     getMenu() {
+      this.loading = true;
       console.log('process.env.VUE_APP_SERVER_URL', process.env.VUE_APP_SERVER_URL)
       axios
         .get(process.env.VUE_APP_SERVER_URL + "menu")
         .then((res) => {
           console.log('res', res.data)
           this.menu = res.data;
+          this.loading = false;
         })
         .catch((error) => {
           console.log(error);
@@ -72,33 +80,33 @@ export default {
           })
         }
       });
-      this.$router.push({ name: 'carrinho',  params: this.order })
+      this.$router.push({ name: 'carrinho', params: { order: this.order } })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-h3,
-span.cost {
-  color: white;
+
+.title {
+  color: rgb(218, 218, 218);
   font-weight: bold
 }
 
 .item {
   background-color: #7D6D6D;
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px;
   margin: 10px;
 }
 
-.botao-finalizar {
+.order {
   display: flex;
   justify-content: center !important;
   background-color: rgb(129, 0, 0) !important;
 }
 
-.botao-finalizar:hover {
+.order:hover {
   background-color: rgba(129, 0, 0, 0.8) !important;
 }
 
@@ -110,15 +118,13 @@ input[type='number'] {
   text-align: center;
 }
 
-.vertical-center {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+.attribute {
+  font-size: large;
+  font-weight: bold;
 }
 
-div.input {
-  height: 150px;
-  line-height: 150px;
-  text-align: center;
+.description {
+   font-size: medium;
+   font-weight: bold;
 }
 </style>

@@ -5,9 +5,9 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
-          promoções
+          <h2>Aguarde, em breve teremos promoções!</h2>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </template>

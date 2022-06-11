@@ -1,16 +1,16 @@
 /*Produtos*/
 INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
 (1, 'Espresso', 'Extração intensa dos atributos sensoriais do café. A moagem fina unida a pressão da água traz uma bebida intensa, encorpada e saborosa.',
-'expresso.png', 'Expresso');
+'espresso.webp', 'Expresso');
 INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
 (2, 'Panna', 'Panna quer dizer creme em italiano. Uma deliciosa cobertura de chantilly adicionada ao espresso',
-'panna.png', 'Expresso');
+'panna.webp', 'Expresso');
 INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
 (3, 'Mocha', 'Café com chocolate é uma combinação de sabores clássica. Acrescente a calda de chocolate ao Caffè Latte ou Cappuccino e desfrute de uma deliciosa bebida adocicada',
-'mocha.png', 'Expresso');
+'mocha.webp', 'Expresso');
 INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
 (4, 'Macchiato', 'Clássico italiano. Café espresso com espuma de leite vaporizado, o que confere mais doçura à bebida',
-'macchiato.png', 'Expresso');
+'macchiato.webp', 'Expresso');
 INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
 (5, 'Moído & Coado Hario V60', 'Voltando às origens com o clássico coado. Neste método a moagem é feita no momento de coar o café. O Hario V60 é um método japonês que evidencia as características do café trazendo doçura, acidez e corpo em perfeita harmonia.',
 'v60.png', 'Coado');
