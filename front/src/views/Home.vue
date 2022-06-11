@@ -13,12 +13,28 @@
 </template>
 
 <script>
-
+import axios from "axios";
 import ImageSlider from "../components/ImageSlider";
 
 export default {
   components: {
     ImageSlider
+  },
+  created() {
+    this.wakeUpHeroku();
+  },
+  methods: {
+    wakeUpHeroku() {
+      console.log(process.env.VUE_APP_SERVER_URL)
+      axios
+        .get(process.env.VUE_APP_SERVER_URL + "wakeup")
+        .then((res) => {
+          console.log(res.data);      
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
