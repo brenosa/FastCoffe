@@ -15,7 +15,7 @@
             <div class="features ">
               <div class="md-layout">
                 <div class="md-layout-item md-size-10">
-                  <img src="../assets/img/espresso.webp" :alt="product.imagelocation">
+                  <img :src="require('../assets/img/' + product.imagelocation)" :alt="product.imagelocation">
                 </div>
                 <div class="md-layout-item md-size-60">
                   <h3 class="title">{{ product.name }}</h3>
@@ -38,7 +38,7 @@
           </md-button>
         </div>
       </div>
-    </div>
+    </div>   
   </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
     return {
       loading: true,
       menu: [],
-      order: []
+      orderItems: []
     }
   },
   created() {
@@ -66,28 +66,27 @@ export default {
           console.log('res', res.data)
           this.menu = res.data;
           this.loading = false;
-        })
-        .catch((error) => {
+        }).catch((error) => {
           console.log(error);
         });
     },
     getOrder() {
       this.menu.forEach(item => {
         if (item.quantity) {
-          this.order.push({
+          this.orderItems.push({
             ...item,
+            productId: item.id,
             totalCost: parseInt(item.quantity) * parseFloat(item.cost)
           })
         }
       });
-      this.$router.push({ name: 'carrinho', params: { order: this.order } })
+      this.$router.push({ name: 'pedido', params: { orderItems: this.orderItems } })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 .title {
   color: rgb(218, 218, 218);
   font-weight: bold
@@ -124,7 +123,7 @@ input[type='number'] {
 }
 
 .description {
-   font-size: medium;
-   font-weight: bold;
+  font-size: medium;
+  font-weight: bold;
 }
 </style>
