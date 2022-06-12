@@ -35,6 +35,9 @@
           <div class="center" v-if="loading">
             <md-progress-spinner class="md-accent" md-mode="indeterminate"></md-progress-spinner>
           </div>
+          <div class="center">
+            <h3>Total: R${{ totalCost }}</h3>
+          </div>
           <md-button v-if="orderItems && orderItems.length > 0" slot="buttons" href="javascript:void(0)" class="order"
             @click="sendOrder">
             Finalizar pedido
@@ -60,7 +63,8 @@ export default {
       loading: false,
       showDialog: false,
       orderId: 0,
-      orderItems: []
+      orderItems: [],
+      totalCost: 0
     }
   },
   created() {
@@ -69,6 +73,10 @@ export default {
   methods: {
     getOrder() {
       this.orderItems = this.$route.params.orderItems;
+      this.totalCost = this.orderItems.reduce((acc, cur) => {
+        return acc + cur.totalCost;
+      }, 0);
+
     },
     sendOrder() {
       const order = {
@@ -76,7 +84,8 @@ export default {
         clientId: 4,
         orderDate: new Date(),
         status: "Pendente",
-        orderItems: this.orderItems
+        orderItems: this.orderItems,
+        totalCost: this.totalCost
       }
       this.loading = true;
       axios
