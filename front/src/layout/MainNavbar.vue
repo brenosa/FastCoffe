@@ -22,7 +22,7 @@
                 <p>Promoções</p>
               </md-list-item>
 
-              <md-list-item href="#/carrinho">
+              <md-list-item href="#/pedido">
                 <i class="material-icons">shopping_cart</i>
                 <p>Meu Pedido</p>
               </md-list-item>
@@ -40,9 +40,9 @@
         </div>
       </div>
     </div>
+    
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title>Ajuda solicitada, aguarde!</md-dialog-title>
-
       <md-dialog-actions>
         <md-button class="md-primary" @click="showDialog = false">OK</md-button>
       </md-dialog-actions>

@@ -6,7 +6,7 @@ import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
 import Administracao from "./views/Administracao.vue";
 import Cardapio from "./views/Cardapio.vue";
-import Carrinho from "./views/Carrinho.vue";
+import Pedido from "./views/Pedido.vue";
 import Novidades from "./views/Novidades.vue";
 import Promocao from "./views/Promocao.vue";
 
@@ -38,9 +38,9 @@ export default new Router({
       components: { default: Cardapio, header: MainNavbar, footer: MainFooter },
     },
     {
-      path: "/carrinho",
-      name: "carrinho",
-      components: { default: Carrinho, header: MainNavbar, footer: MainFooter },
+      path: "/pedido",
+      name: "pedido",
+      components: { default: Pedido, header: MainNavbar, footer: MainFooter },
     },
     {
       path: "/novidades",
