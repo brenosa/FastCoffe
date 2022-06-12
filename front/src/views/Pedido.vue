@@ -8,40 +8,48 @@
           <div class="center">
             <h1>Meu Pedido - Mesa 4</h1>
           </div>
-          <div class="item" v-if="orderItems && orderItems.length > 0" v-for="product in orderItems" :key="product.id">
-            <div class="features ">
-              <div class="md-layout">
-                <div class="md-layout-item md-size-10">
-                  <img :src="require('../assets/img/' + product.imagelocation)" :alt="product.imagelocation">
-                </div>
-                <div class="md-layout-item md-size-60">
-                  <h3 class="title">{{ product.name }}</h3>
-                  <p class="description">{{ product.description }}</p>
-                </div>
-                <div class="md-layout-item md-size-10 center">
-                  <h4 class="title">Quantidade</h4>
-                  <span class="attribute">{{ product.quantity }}</span>
-                </div>
-                <div class="md-layout-item md-size-20 center">
-                  <h4 class="title">Valor</h4>
-                  <span class="attribute">R${{ product.totalCost }}</span>
+          <div v-if="orderItems && orderItems.length > 0">
+            <!--itens-->
+            <div class="item" v-for="product in orderItems" :key="product.id">
+              <div class="features ">
+                <div class="md-layout">
+                  <div class="md-layout-item md-size-10">
+                    <img :src="require('../assets/img/' + product.imagelocation)" :alt="product.imagelocation">
+                  </div>
+                  <div class="md-layout-item md-size-60">
+                    <h3 class="title">{{ product.name }}</h3>
+                    <p class="description">{{ product.description }}</p>
+                  </div>
+                  <div class="md-layout-item md-size-10 center">
+                    <h4 class="title">Quantidade</h4>
+                    <span class="attribute">{{ product.quantity }}</span>
+                  </div>
+                  <div class="md-layout-item md-size-20 center">
+                    <h4 class="title">Valor</h4>
+                    <span class="attribute">R${{ product.totalCost }}</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!--spinner-->
+            <div class="center" v-if="loading">
+              <md-progress-spinner class="md-accent" md-mode="indeterminate"></md-progress-spinner>
+            </div>
+
+            <!--fechar pedido-->
+            <div class="center">
+              <h3>Total: R${{ totalCost }}</h3>
+              <md-button slot="buttons" href="javascript:void(0)" class="order" @click="sendOrder">
+                Finalizar pedido
+              </md-button>
+            </div>
           </div>
+
+          <!--aviso vazio-->
           <div v-if="!orderItems || orderItems.length === 0">
             <h3>Seu pedido está vazio, adicione itens <a href="#/cardapio">aqui</a></h3>
           </div>
-          <div class="center" v-if="loading">
-            <md-progress-spinner class="md-accent" md-mode="indeterminate"></md-progress-spinner>
-          </div>
-          <div class="center">
-            <h3>Total: R${{ totalCost }}</h3>
-          </div>
-          <md-button v-if="orderItems && orderItems.length > 0" slot="buttons" href="javascript:void(0)" class="order"
-            @click="sendOrder">
-            Finalizar pedido
-          </md-button>
         </div>
       </div>
     </div>
