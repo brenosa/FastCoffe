@@ -7,7 +7,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) { }
 
   @Put()
-  findAll(@Req() request: Request): Promise<number> {
+  createOrder(@Req() request: Request): Promise<number> {
     return this.orderService.createOrder(request.body?.order);
   }
 }
