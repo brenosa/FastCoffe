@@ -81,10 +81,11 @@ export default {
   methods: {
     getOrder() {
       this.orderItems = this.$route.params.orderItems;
-      this.totalCost = this.orderItems.reduce((acc, cur) => {
-        return acc + cur.totalCost;
-      }, 0);
-
+      if (this.orderItems) {
+        this.totalCost = this.orderItems.reduce((acc, cur) => {
+          return acc + cur.totalCost;
+        }, 0);
+      }
     },
     sendOrder() {
       const order = {
