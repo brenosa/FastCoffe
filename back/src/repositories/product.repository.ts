@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { getRepository } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
 import { Product } from "../entities/product.entity";
 
 
@@ -9,5 +9,44 @@ export class ProductRepository {
         return await getRepository(Product).find();
     }
 
-    /* async addProduct(product: Product): Promise<Product> { } */
+    async save(product: Product): Promise<boolean> {
+        try {
+            await createQueryBuilder()
+                .insert()
+                .into(Product)
+                .values(product)
+                .execute();
+            return true;
+        } catch (error) {
+            console.log('error', error)
+            return false;
+        }
+    }
+
+    async update(product: Product): Promise<boolean> {
+        try {
+            await createQueryBuilder('Product')
+                .update(product)
+                .execute();
+            return true;
+        } catch (error) {
+            console.log('error', error)
+            return false;
+        }
+    }
+
+    async delete(product: Product): Promise<boolean> {
+        try {
+            await createQueryBuilder('Product')
+                .delete()
+                .where({
+                    id: product.id
+                })
+                .execute();
+            return true;
+        } catch (error) {
+            console.log('error', error)
+            return false;
+        }
+    }
 }

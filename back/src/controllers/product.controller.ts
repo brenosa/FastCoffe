@@ -1,4 +1,4 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Patch, Put, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { Product } from '../entities/product.entity';
 import { ProductService } from '../services/product.service';
@@ -8,7 +8,22 @@ export class ProductController {
     constructor(private readonly productService: ProductService) {}
 
   @Get()
-  findAll(@Req() request: Request): Promise<Product[]> {
+  getAllProducts(): Promise<Product[]> {
     return this.productService.getAllProducts();
+  }
+
+  @Put()
+  createProduct(@Req() request: Request): Promise<boolean> {
+    return this.productService.createProduct(request.body);
+  }
+
+  @Patch()
+  updateProduct(@Req() request: Request): Promise<boolean> {
+    return this.productService.updateProduct(request.body);
+  }
+
+  @Delete()
+  deleteProduct(@Req() request: Request): Promise<boolean> {
+    return this.productService.deleteProduct(request.body);
   }
 }
