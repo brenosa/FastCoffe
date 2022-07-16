@@ -5,7 +5,16 @@ import { OrderRepository } from '../repositories/order.repository';
 @Injectable()
 export class OrderService {
     constructor(private readonly orderRepository: OrderRepository) { }
+
+    getPendingOrders(): Promise<Order[]> {
+        return this.orderRepository.getPendingOrders();
+    }
+
     createOrder(order: Order): Promise<number> {       
         return this.orderRepository.save(order);
+    }
+
+    updateOrder(order: Order): Promise<boolean> {
+        return this.orderRepository.update(order);
     }
 }
