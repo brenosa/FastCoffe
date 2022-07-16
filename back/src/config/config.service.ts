@@ -5,6 +5,7 @@ import { Order } from '../entities/order.entity';
 import { OrderItem } from '../entities/orderItem.entity';
 import { Product } from '../entities/product.entity';
 import { Stock } from '../entities/stock.entity';
+import { User } from '../entities/user.entity';
 
 class ConfigService {
   constructor(private env: { [k: string]: string | undefined }) { }
@@ -31,7 +32,7 @@ class ConfigService {
       username: this.getValue('POSTGRES_USER'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
-      entities: [Product, Cost, Menu, Stock, Order, OrderItem],
+      entities: [Product, Cost, Menu, Stock, Order, OrderItem, User],
       ssl: { rejectUnauthorized: false },
       autoLoadEntities: true,
       //synchronize: Boolean(this.getValue('IS_DEV')),

@@ -29,40 +29,50 @@ INSERT INTO product (id, "name", "description", "imageLocation", "category") VAL
 (11, 'Croissant', '4 Queijos','croissant.png', 'Salgados');
 
 /*Menu*/
-INSERT INTO menu ("productId") VALUES(1);
-INSERT INTO menu ("productId") VALUES(2);
-INSERT INTO menu ("productId") VALUES(3);
-INSERT INTO menu ("productId") VALUES(4);
-INSERT INTO menu ("productId") VALUES(5);
-INSERT INTO menu ("productId") VALUES(6);
-INSERT INTO menu ("productId") VALUES(7);
-INSERT INTO menu ("productId") VALUES(8);
-INSERT INTO menu ("productId") VALUES(9);
-INSERT INTO menu ("productId") VALUES(10);
-INSERT INTO menu ("productId") VALUES(11);
+INSERT INTO menu ("productId") VALUES (1);
+INSERT INTO menu ("productId") VALUES (2);
+INSERT INTO menu ("productId") VALUES (3);
+INSERT INTO menu ("productId") VALUES (4);
+INSERT INTO menu ("productId") VALUES (5);
+INSERT INTO menu ("productId") VALUES (6);
+INSERT INTO menu ("productId") VALUES (7);
+INSERT INTO menu ("productId") VALUES (8);
+INSERT INTO menu ("productId") VALUES (9);
+INSERT INTO menu ("productId") VALUES (10);
+INSERT INTO menu ("productId") VALUES (11);
 
 /*Cost*/
-INSERT INTO cost ("productId", "cost", "discount") VALUES(1, '2.5', '5');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(2, '3.5', '5');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(3, '1.5', '5');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(4, '6.0', '5');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(5, '5.5', '10');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(6, '5.0', '10');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(7, '7.5', '10');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(8, '10.0', '10');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(9, '8.5', '15');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(10, '7.0', '15');
-INSERT INTO cost ("productId", "cost", "discount") VALUES(11, '6.5', '15');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (1, '2.5', '5');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (2, '3.5', '5');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (3, '1.5', '5');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (4, '6.0', '5');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (5, '5.5', '10');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (6, '5.0', '10');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (7, '7.5', '10');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (8, '10.0', '10');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (9, '8.5', '15');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (10, '7.0', '15');
+INSERT INTO cost ("productId", "cost", "discount") VALUES (11, '6.5', '15');
 
 /*Stock*/
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(1,  12, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(2,  23, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(3,  33, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(4,  26, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(5,  5, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(6,  24, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(7,  12, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(8,  7, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(9,  7, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(10, 5, '2022-05-15', '2022-06-30');
-INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES(11, 4, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (1,  12, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (2,  23, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (3,  33, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (4,  26, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (5,  5, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (6,  24, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (7,  12, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (8,  7, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (9,  7, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (10, 5, '2022-05-15', '2022-06-30');
+INSERT INTO stock ("productId", "qtyAvailable", "lastRestocking", "nextRestocking") VALUES (11, 4, '2022-05-15', '2022-06-30');
+
+/*User*/
+INSERT INTO "user" ("name", "gender", "userRole", "email", "phone", "cpf", "password", "position") 
+VALUES ('Breno', 'M', 'employee', 'email@gmail.com', '39393939', '87609131008', '12345', 'manager');
+
+INSERT INTO "user" ("name", "gender", "userRole", "email", "phone", "cpf", "password", "position") 
+VALUES ('Maria', 'F', 'employee', 'email@gmail.com', '39393939', '32614584029', '12345', 'waitress');
+
+INSERT INTO "user" ("name", "gender", "userRole", "email", "phone", "cpf", "password", "position") 
+VALUES ('João', 'M', 'employee', 'email@gmail.com', '39393939', '54012427008', '12345', 'waiter');
