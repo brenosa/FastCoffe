@@ -5,16 +5,37 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
-          admin
+          <div v-if="isEmployee">
+            admin
+          </div>
+          <div v-if="!isEmployee">
+            Área restrita para funcionários!
+          </div>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      isEmployee: false,
+      isManager: false,
+      user: {}
+    }
+  },
+  created() {
+    this.getUserInfo();
+  },
+  methods: {
+    getUserInfo() {
+      this.user = this.$route.params.user;
+      this.isEmployee = this.user?.userRole === 'employee';
+      this.isManager = this.user?.position === 'manager';
+    }
+  }
 };
 </script>
 

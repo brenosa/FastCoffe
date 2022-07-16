@@ -8,27 +8,34 @@
               <h4 slot="title" class="card-title">Área restrita</h4>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>face</md-icon>
-                <label>Usuário</label>
-                <md-input v-model="firstname"></md-input>
+                <label>CPF</label>
+                <md-input v-model="cpf"></md-input>
               </md-field>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Senha</label>
-                <md-input v-model="password"></md-input>
+                <md-input v-model="password" type="password"></md-input>
               </md-field>
-              <md-button slot="footer" class="md-simple md-success md-lg">
-                Em construção
+              <md-button slot="footer" class="md-simple md-success md-lg" @click="login">
+                Login
               </md-button>
             </login-card>
           </div>
         </div>
       </div>
     </div>
+    <md-dialog :md-active.sync="showDialog">
+      <md-dialog-title>Erro, credenciais incorretas!</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="showDialog = false">OK</md-button>
+      </md-dialog-actions>
+    </md-dialog>
   </div>
 </template>
 
 <script>
 import { LoginCard } from "@/components";
+import axios from "axios";
 
 export default {
   components: {
@@ -37,15 +44,32 @@ export default {
   bodyClass: "login-page",
   data() {
     return {
-      firstname: null,
-      email: null,
-      password: null
+      cpf: null,
+      password: null,
+      showDialog: false
     };
   },
   props: {
     header: {
       type: String,
     }
+  },
+  methods: {
+    login() {
+      axios
+        .post(process.env.VUE_APP_SERVER_URL + "user/login", { cpf: this.cpf, password: this.password })
+        .then((res) => {
+          console.log('res', res)
+          if (res.data?.userRole === 'employee') {
+            this.$router.push({ name: 'administracao', params: { user: res.data } })
+          } else {
+            this.showDialog = true;
+          }
+        }).catch((error) => {
+          console.log(error);
+          this.showDialog = true;
+        });
+    },
   },
   computed: {
     headerStyle() {
