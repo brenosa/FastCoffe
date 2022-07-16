@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { createQueryBuilder } from "typeorm";
 import { Cost } from "../entities/cost.entity";
+import { Menu } from "../entities/menu.entity";
 
 @Injectable()
 export class MenuRepository {
@@ -19,7 +20,46 @@ export class MenuRepository {
             .getRawMany();
     }
 
-    /* async addProduct(productId: number): Promise<Menu> { } */
+    async save(menu: Menu): Promise<boolean> {
+        try {
+            await createQueryBuilder()
+                .insert()
+                .into(Menu)
+                .values(menu)
+                .execute();
+            return true;
+        } catch (error) {
+            console.log('error', error)
+            return false;
+        }
+    }
+
+    async update(menu: Menu): Promise<boolean> {
+        try {
+            await createQueryBuilder('Menu')
+                .update(menu)
+                .execute();
+            return true;
+        } catch (error) {
+            console.log('error', error)
+            return false;
+        }
+    }
+
+    async delete(menu: Menu): Promise<boolean> {
+        try {
+            await createQueryBuilder('Menu')
+                .delete()
+                .where({
+                    id: menu.id
+                })
+                .execute();
+            return true;
+        } catch (error) {
+            console.log('error', error)
+            return false;
+        }
+    }
 
 
 }
