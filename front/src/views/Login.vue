@@ -54,15 +54,26 @@ export default {
       type: String,
     }
   },
+  created() {
+    this.checkLogin();
+  },
   methods: {
+    checkLogin() {
+      const user = JSON.parse(sessionStorage.user);
+      if (user?.userRole === 'employee') {
+        this.$router.push({ name: 'administracao' })
+      }
+    },
     login() {
       axios
         .post(process.env.VUE_APP_SERVER_URL + "user/login", { cpf: this.cpf, password: this.password })
-        .then((res) => {
-          console.log('res', res)
-          if (res.data?.userRole === 'employee') {
-            this.$router.push({ name: 'administracao', params: { user: res.data } })
+        .then((user) => {
+          console.log('user', user)
+          if (user.data?.userRole === 'employee') {
+            sessionStorage.setItem('user', JSON.stringify(user.data));
+            this.$router.push({ name: 'administracao' })
           } else {
+            sessionStorage.setItem('logged', 'false');
             this.showDialog = true;
           }
         }).catch((error) => {
