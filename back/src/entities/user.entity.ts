@@ -11,7 +11,7 @@ export class User {
     @Column({ type: 'varchar', length: 50 })
     gender: string;
 
-    @Column({ type: 'enum', enum: ["client", "employee"], default: "employee" })
+    @Column({ type: 'enum', enumName: 'user_role_enum', enum: ["client", "employee"], default: "employee" })
     userRole: string;
 
     @Column({ type: 'varchar', length: 100 })
