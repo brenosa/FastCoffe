@@ -1,45 +1,45 @@
 /*Produtos*/
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
 (1, 'Espresso', 'Extração intensa dos atributos sensoriais do café. A moagem fina unida a pressão da água traz uma bebida intensa, encorpada e saborosa.',
-'espresso.webp', 'Expresso');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
+'espresso.webp');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
 (2, 'Panna', 'Panna quer dizer creme em italiano. Uma deliciosa cobertura de chantilly adicionada ao espresso',
-'panna.webp', 'Expresso');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
+'panna.webp');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
 (3, 'Mocha', 'Café com chocolate é uma combinação de sabores clássica. Acrescente a calda de chocolate ao Caffè Latte ou Cappuccino e desfrute de uma deliciosa bebida adocicada',
-'mocha.webp', 'Expresso');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
+'mocha.webp');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
 (4, 'Macchiato', 'Clássico italiano. Café espresso com espuma de leite vaporizado, o que confere mais doçura à bebida',
-'macchiato.webp', 'Expresso');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
+'macchiato.webp');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
 (5, 'Moído & Coado Hario V60', 'Voltando às origens com o clássico coado. Neste método a moagem é feita no momento de coar o café. O Hario V60 é um método japonês que evidencia as características do café trazendo doçura, acidez e corpo em perfeita harmonia.',
-'v60.png', 'Coado');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
+'v60.png');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
 (6, 'French Press', 'Esse método de extração permite brincar com os resultados de um mesmo café, seu tempo de infusão traz uma explosão de sabor, aroma, corpo e doçura.',
-'french.png', 'Coado');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
-(7, 'Chocolate Quente', 'Tipo Europeu','chocolate.png', 'Chocolates');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
-(8, 'Bolo de cenoura', 'Fatia','cenoura.png', 'Bolos');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
-(9, 'Brownie', 'Fatia','brownie.png', 'Bolos');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
-(10, 'Empada', 'Frango','empada.png', 'Salgados');
-INSERT INTO product (id, "name", "description", "imageLocation", "category") VALUES 
-(11, 'Croissant', '4 Queijos','croissant.png', 'Salgados');
+'french.png');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
+(7, 'Chocolate Quente', 'Tipo Europeu','chocolate.png');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
+(8, 'Bolo de cenoura', 'Fatia','cenoura.png');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
+(9, 'Brownie', 'Fatia','brownie.png');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
+(10, 'Empada', 'Frango','empada.png');
+INSERT INTO product (id, "name", "description", "imageLocation") VALUES 
+(11, 'Croissant', '4 Queijos','croissant.png');
 
 /*Menu*/
-INSERT INTO menu ("productId") VALUES (1);
-INSERT INTO menu ("productId") VALUES (2);
-INSERT INTO menu ("productId") VALUES (3);
-INSERT INTO menu ("productId") VALUES (4);
-INSERT INTO menu ("productId") VALUES (5);
-INSERT INTO menu ("productId") VALUES (6);
-INSERT INTO menu ("productId") VALUES (7);
-INSERT INTO menu ("productId") VALUES (8);
-INSERT INTO menu ("productId") VALUES (9);
-INSERT INTO menu ("productId") VALUES (10);
-INSERT INTO menu ("productId") VALUES (11);
+INSERT INTO menu ("productId", "category") VALUES (1, 'Expresso');
+INSERT INTO menu ("productId", "category") VALUES (2, 'Expresso');
+INSERT INTO menu ("productId", "category") VALUES (3, 'Expresso');
+INSERT INTO menu ("productId", "category") VALUES (4, 'Expresso');
+INSERT INTO menu ("productId", "category") VALUES (5, 'Coado');
+INSERT INTO menu ("productId", "category") VALUES (6, 'Coado');
+INSERT INTO menu ("productId", "category") VALUES (7, 'Chocolates');
+INSERT INTO menu ("productId", "category") VALUES (8, 'Bolos');
+INSERT INTO menu ("productId", "category") VALUES (9, 'Bolos');
+INSERT INTO menu ("productId", "category") VALUES (10, 'Salgados');
+INSERT INTO menu ("productId", "category") VALUES (11, 'Salgados');
 
 /*Cost*/
 INSERT INTO cost ("productId", "cost", "discount") VALUES (1, '2.5', '5');

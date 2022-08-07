@@ -61,7 +61,7 @@ export default {
       this.loading = true;
       console.log('process.env.VUE_APP_SERVER_URL', process.env.VUE_APP_SERVER_URL)
       axios
-        .get(process.env.VUE_APP_SERVER_URL + "menu")
+        .get(process.env.VUE_APP_SERVER_URL + "menu/items")
         .then((res) => {
           console.log('res', res.data)
           this.menu = res.data;

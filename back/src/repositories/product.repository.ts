@@ -27,6 +27,9 @@ export class ProductRepository {
         try {
             await createQueryBuilder('Product')
                 .update(product)
+                .where({
+                    id: product.id
+                })
                 .execute();
             return true;
         } catch (error) {
@@ -35,12 +38,12 @@ export class ProductRepository {
         }
     }
 
-    async delete(product: Product): Promise<boolean> {
+    async delete(productId: number): Promise<boolean> {
         try {
             await createQueryBuilder('Product')
                 .delete()
                 .where({
-                    id: product.id
+                    id: productId
                 })
                 .execute();
             return true;

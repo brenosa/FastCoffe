@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Patch, Put, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Put, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { Product } from '../entities/product.entity';
 import { ProductService } from '../services/product.service';
@@ -22,8 +22,8 @@ export class ProductController {
     return this.productService.updateProduct(request.body);
   }
 
-  @Delete()
-  deleteProduct(@Req() request: Request): Promise<boolean> {
-    return this.productService.deleteProduct(request.body);
+  @Delete('/:productId')
+  deleteProduct(@Param('productId') productId): Promise<boolean> {
+    return this.productService.deleteProduct(productId);
   }
 }

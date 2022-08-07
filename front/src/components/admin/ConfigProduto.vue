@@ -12,8 +12,8 @@
 
             <div class="box">
               <md-field>
-                <label for="nome">Nome: </label>
-                <md-input id="nome" type="text" v-model="newProduct.name" required> </md-input>
+                <label for="name">Nome: </label>
+                <md-input id="name" type="text" v-model="newProduct.name" required> </md-input>
               </md-field>
 
             </div>
@@ -23,24 +23,6 @@
                 <label for="description">Descrição: </label>
                 <md-input id="description" type="text" v-model="newProduct.description" required>
                 </md-input>
-              </md-field>
-            </div>
-
-            <div class="box">
-              <md-field>
-                <label for="imageLocation">Imagem: </label>
-                <md-input id="imageLocation" type="text" v-model="newProduct.imageLocation" required> </md-input>
-              </md-field>
-            </div>
-
-            <div class="box">
-              <md-field>
-                <label for="category">Categoria: </label>
-                <md-select id="category" v-model="newProduct.category" required>
-                  <md-option value="manager">Gerente</md-option>
-                  <md-option value="waiter">Garçom</md-option>
-                  <md-option value="hatter">Chapeiro</md-option>
-                </md-select>
               </md-field>
             </div>
 
@@ -57,11 +39,20 @@
               <h3>Alterar Produto</h3>
             </div>
 
+            <div class="box">
+              <md-field>
+                <label for="product_a">Produtos Cadastrados: </label>
+                <md-select id="product_a" @md-selected="selectProduct" required>
+                  <md-option v-for="product in products" :key="product.id" :value="product.id">{{ product.name }}
+                  </md-option>
+                </md-select>
+              </md-field>
+            </div>
 
             <div class="box">
               <md-field>
-                <label for="nome_a">Nome: </label>
-                <md-input id="nome_a" type="text" v-model="updatedProduct.name" required> </md-input>
+                <label for="name_a">Nome: </label>
+                <md-input id="name_a" type="text" v-model="updatedProduct.name" required> </md-input>
               </md-field>
 
             </div>
@@ -73,25 +64,7 @@
                 </md-input>
               </md-field>
             </div>
-
-            <div class="box">
-              <md-field>
-                <label for="imageLocation_a">Imagem: </label>
-                <md-input id="imageLocation_a" type="text" v-model="updatedProduct.imageLocation" required> </md-input>
-              </md-field>
-            </div>
-
-            <div class="box">
-              <md-field>
-                <label for="category_a">Categoria: </label>
-                <md-select id="category_a" v-model="updatedProduct.category" required>
-                  <md-option value="manager">Gerente</md-option>
-                  <md-option value="waiter">Garçom</md-option>
-                  <md-option value="hatter">Chapeiro</md-option>
-                </md-select>
-              </md-field>
-            </div>
-
+         
             <div class="md-layout md-gutter">
               <div class="md-layout-item">
                 <md-button class="md-lg" @click="updateProduct">
@@ -109,10 +82,28 @@
         </div>
       </div>
     </div>
-    <md-dialog :md-active.sync="showDialog">
+    <md-dialog :md-active.sync="showCreateDialog">
       <md-dialog-title>Produto cadastrado com sucesso!</md-dialog-title>
       <md-dialog-actions>
-        <md-button class="md-primary" @click="showDialog = false">OK</md-button>
+        <md-button class="md-primary" @click="showCreateDialog = false">OK</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+    <md-dialog :md-active.sync="showUpdateDialog">
+      <md-dialog-title>Produto atualizado com sucesso!</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="showUpdateDialog = false">OK</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+    <md-dialog :md-active.sync="showDeleteDialog">
+      <md-dialog-title>Produto removido com sucesso!</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="showDeleteDialog = false">OK</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+    <md-dialog :md-active.sync="showErrorDialog">
+      <md-dialog-title>Falha!</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="showErrorDialog = false">OK</md-button>
       </md-dialog-actions>
     </md-dialog>
   </div>
@@ -127,15 +118,24 @@ export default {
       newProduct: {},
       updatedProduct: {},
       products: [],
-      showDialog: false
+      showCreateDialog: false,
+      showUpdateDialog: false,
+      showDeleteDialog: false,
+      showErrorDialog: false,
     }
   },
+  created() {
+    this.getAllProducts();
+  },
   methods: {
+    selectProduct(selectedProductId) {
+      this.updatedProduct = this.products.filter(p => p.id === selectedProductId)[0];
+    },
     getAllProducts() {
       axios
-        .get(process.env.VUE_APP_SERVER_URL + "product", this.newProduct)
+        .get(process.env.VUE_APP_SERVER_URL + "product")
         .then((products) => {
-          this.products = products;
+          this.products = products.data;
         }).catch((error) => {
           console.log(error);
         });
@@ -145,29 +145,47 @@ export default {
         .put(process.env.VUE_APP_SERVER_URL + "product", this.newProduct)
         .then((product) => {
           console.log('product', product);
-          this.showDialog = true;
+          if (product.data) {
+            this.showCreateDialog = true;
+             this.getAllProducts();
+          } else {
+            this.showErrorDialog = true;
+          }
         }).catch((error) => {
           console.log(error);
+          this.showErrorDialog = true;
         });
     },
     updateProduct() {
       axios
-        .patch(process.env.VUE_APP_SERVER_URL + "product", this.newProduct)
+        .patch(process.env.VUE_APP_SERVER_URL + "product", this.updatedProduct)
         .then((product) => {
           console.log('product', product);
-          this.showDialog = true;
+          if (product.data) {
+            this.showUpdateDialog = true;
+             this.getAllProducts();
+          } else {
+            this.showErrorDialog = true;
+          }
         }).catch((error) => {
           console.log(error);
+          this.showErrorDialog = true;
         });
     },
     deleteProduct() {
       axios
-        .delete(process.env.VUE_APP_SERVER_URL + "product", this.newProduct)
+        .delete(process.env.VUE_APP_SERVER_URL + "product/" + this.updatedProduct.id)
         .then((product) => {
           console.log('product', product);
-          this.showDialog = true;
+          if (product.data) {
+            this.showDeleteDialog = true;
+             this.getAllProducts();
+          } else {
+            this.showErrorDialog = true;
+          }
         }).catch((error) => {
           console.log(error);
+          this.showErrorDialog = true;
         });
     },
   },

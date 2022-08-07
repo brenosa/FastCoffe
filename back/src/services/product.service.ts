@@ -11,6 +11,7 @@ export class ProductService {
     }
 
     createProduct(product: Product): Promise<boolean> {
+        product.imageLocation = "espresso.webp";
         return this.productRepository.save(product);
     }
 
@@ -18,7 +19,7 @@ export class ProductService {
         return this.productRepository.update(product);
     }
 
-    deleteProduct(product: Product): Promise<boolean> {
-        return this.productRepository.delete(product);
+    deleteProduct(productId: number): Promise<boolean> {
+        return this.productRepository.delete(productId);
     }
 }

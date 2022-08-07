@@ -8,6 +8,9 @@ export class Menu {
 
     @Column()
     productId: number;
+        
+    @Column({ type: 'varchar', length: 300 })
+    category: string;  
 
     @OneToOne(() => Product)
     @JoinColumn()

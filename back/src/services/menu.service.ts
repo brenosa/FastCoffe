@@ -10,6 +10,10 @@ export class MenuService {
         return this.menuRepository.getMenuItems();
     }
 
+    getMenu(): Promise<Menu[]> {
+        return this.menuRepository.getMenu();
+    }
+
     createMenu(menu: Menu): Promise<boolean> {
         return this.menuRepository.save(menu);
     }
@@ -18,7 +22,7 @@ export class MenuService {
         return this.menuRepository.update(menu);
     }
 
-    deleteMenu(menu: Menu): Promise<boolean> {
-        return this.menuRepository.delete(menu);
+    deleteMenu(menuId: number): Promise<boolean> {
+        return this.menuRepository.delete(menuId);
     }
 }

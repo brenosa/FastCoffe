@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { createQueryBuilder } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
 import { Cost } from "../entities/cost.entity";
 import { Menu } from "../entities/menu.entity";
 
@@ -12,12 +12,16 @@ export class MenuRepository {
                 "Product.name AS name",
                 "Product.description AS description",
                 "Product.imageLocation AS imageLocation",
-                "Product.category AS category",
+                "Menu.category AS category",
                 "Cost.cost AS cost"
             ])
             .innerJoin("Menu.product", "Product")
-            .innerJoin(Cost, "Cost", "Product.id = Cost.productId")
+            .leftJoin(Cost, "Cost", "Product.id = Cost.productId")
             .getRawMany();
+    }
+
+    async getMenu(): Promise<Menu[]> {
+        return await getRepository(Menu).find();
     }
 
     async save(menu: Menu): Promise<boolean> {
@@ -38,6 +42,9 @@ export class MenuRepository {
         try {
             await createQueryBuilder('Menu')
                 .update(menu)
+                .where({
+                    id: menu.id
+                })
                 .execute();
             return true;
         } catch (error) {
@@ -46,12 +53,12 @@ export class MenuRepository {
         }
     }
 
-    async delete(menu: Menu): Promise<boolean> {
+    async delete(menuId: number): Promise<boolean> {
         try {
             await createQueryBuilder('Menu')
                 .delete()
                 .where({
-                    id: menu.id
+                    id: menuId
                 })
                 .execute();
             return true;
