@@ -6,7 +6,7 @@
       <div class="section">
         <div class="container">
           <div class="center">
-            <h1>Meu Pedido - Mesa 4</h1>
+            <h1>Meu Pedido - Mesa {{ clientId }}</h1>
           </div>
           <div v-if="orderItems && orderItems.length > 0">
             <!--itens-->
@@ -72,7 +72,8 @@ export default {
       showDialog: false,
       orderId: 0,
       orderItems: [],
-      totalCost: 0
+      totalCost: 0,
+      clientId: Math.floor(Math.random() * 10) + 1
     }
   },
   created() {
@@ -90,7 +91,7 @@ export default {
     sendOrder() {
       const order = {
         paymentMethod: "Dinheiro",
-        clientId: 4,
+        clientId: this.clientId,
         orderDate: new Date(),
         status: "Pendente",
         orderItems: this.orderItems,

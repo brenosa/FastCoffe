@@ -1,7 +1,5 @@
 <template>
-  <div class="wrapper">
-    <div class="section page-header header-filter">
-    </div>
+  <div class="wrapper">   
     <div class="main main-raised">
       <div class="section">
         <div class="container">

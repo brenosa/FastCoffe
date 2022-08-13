@@ -5,7 +5,8 @@
     <div class="main main-raised">
       <div class="section">
         <div class="container">
-          <div v-if="isEmployee">
+          
+          <div v-if="isEmployee && isManager">
             <md-tabs>
               <md-tab id="tab-home" md-label="Início" exact>
                 <h2>Bem vindo {{ user.name }}!</h2>
@@ -24,10 +25,20 @@
               </md-tab>
             </md-tabs>
           </div>
+
+          <div v-if="isEmployee && !isManager">
+            <FilaPedidos />
+          </div>
+
           <div v-if="!isEmployee">
             Área restrita para funcionários!
           </div>
         </div>
+      </div>
+      <div>
+        <md-button class="logout pull-right" @click="logout">
+          Logout
+        </md-button>
       </div>
     </div>
   </div>
@@ -38,12 +49,14 @@
 import ConfigUsuario from '../components/admin/ConfigUsuario.vue'
 import ConfigProduto from '../components/admin/ConfigProduto.vue'
 import ConfigCardapio from '../components/admin/ConfigCardapio.vue'
+import FilaPedidos from '../components/FilaPedidos.vue'
 
 export default {
   components: {
     ConfigUsuario,
     ConfigProduto,
-    ConfigCardapio
+    ConfigCardapio,
+    FilaPedidos
   },
   data() {
     return {
@@ -60,13 +73,17 @@ export default {
       this.user = JSON.parse(sessionStorage.user);
       this.isEmployee = this.user?.userRole === 'employee';
       this.isManager = this.user?.position === 'manager';
+    },
+    logout() {
+      sessionStorage.removeItem('user');
+      this.$router.push({ name: 'login' })
     }
   }
 };
 </script>
 
-<style lang="scss">
-.md-tabs.md-theme-default .md-tabs-navigation {
-  background-color: #c0601f !important;
+<style lang="scss" scoped>
+.logout {
+  background-color: red !important;
 }
 </style>
