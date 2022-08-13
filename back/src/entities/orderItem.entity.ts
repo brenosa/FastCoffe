@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Order } from './order.entity';
+import { Product } from './product.entity';
 
 @Entity({ name: 'orderItem' })
 export class OrderItem {
@@ -16,4 +18,11 @@ export class OrderItem {
 
     @Column({ type: 'numeric', precision: 10, scale: 2 })
     totalCost: number;
+
+    @OneToOne(() => Product)
+    @JoinColumn()
+    product: Product 
+
+    @ManyToOne(() => Order, order => order.orderItems)
+    order: Order;   
 }

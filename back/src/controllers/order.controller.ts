@@ -1,6 +1,5 @@
 import { Controller, Get, Patch, Put, Req } from '@nestjs/common';
 import { Request } from 'express';
-import { Order } from '../entities/order.entity';
 import { OrderService } from '../services/order.service';
 
 @Controller('order')
@@ -8,7 +7,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) { }
 
   @Get()
-  getPendingOrders(): Promise<Order[]> {
+  getPendingOrders(): Promise<any[]> {
     return this.orderService.getPendingOrders();
   }
 

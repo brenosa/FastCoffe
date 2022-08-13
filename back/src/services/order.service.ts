@@ -6,7 +6,7 @@ import { OrderRepository } from '../repositories/order.repository';
 export class OrderService {
     constructor(private readonly orderRepository: OrderRepository) { }
 
-    getPendingOrders(): Promise<Order[]> {
+    getPendingOrders(): Promise<any[]> {
         return this.orderRepository.getPendingOrders();
     }
 

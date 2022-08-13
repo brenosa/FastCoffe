@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { OrderItem } from './orderItem.entity';
 
 @Entity({ name: 'order' })
@@ -21,5 +21,6 @@ export class Order {
     @Column({ type: 'varchar', length: 300 })
     status: string;
 
+    @OneToMany(() => OrderItem, orderItem => orderItem.order)
     orderItems: OrderItem[]        
 }

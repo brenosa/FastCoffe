@@ -6,12 +6,11 @@ import { OrderItem } from "../entities/orderItem.entity";
 @Injectable()
 export class OrderRepository {
 
-    async getPendingOrders(): Promise<Order[]> {
-        return await getRepository(Order).find({
-            where: {
-                status: "Pendente"
-            }
-        });
+    getPendingOrders(): Promise<any[]> {
+        return createQueryBuilder("Order")
+            .innerJoinAndSelect("Order.orderItems", "orderItems")
+            .innerJoinAndSelect("orderItems.product", "product")           
+            .getMany();
     }
 
     async save(order: Order): Promise<number> {
