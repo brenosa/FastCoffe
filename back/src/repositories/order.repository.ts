@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { createQueryBuilder, getRepository } from "typeorm";
+import { createQueryBuilder } from "typeorm";
 import { Order } from "../entities/order.entity";
 import { OrderItem } from "../entities/orderItem.entity";
 
@@ -9,7 +9,7 @@ export class OrderRepository {
     getPendingOrders(): Promise<any[]> {
         return createQueryBuilder("Order")
             .innerJoinAndSelect("Order.orderItems", "orderItems")
-            .innerJoinAndSelect("orderItems.product", "product")           
+            .innerJoinAndSelect("orderItems.product", "product")
             .getMany();
     }
 

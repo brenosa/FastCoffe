@@ -51,7 +51,7 @@
                 <label for="category_a">Items do Cardápio Cadastrados: </label>
                 <md-select id="category_a" @md-selected="selectMenuItem" required>
                   <md-option v-for="menu in menuItems" :key="menu.id" :value="menu.id">
-                    {{ menu.id + " - " + menu.category }}
+                    {{ menu.id + " - " + menu.category + ": " + menu.product.name }}
                   </md-option>
                 </md-select>
               </md-field>

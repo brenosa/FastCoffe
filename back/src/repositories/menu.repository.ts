@@ -20,8 +20,10 @@ export class MenuRepository {
             .getRawMany();
     }
 
-    async getMenu(): Promise<Menu[]> {
-        return await getRepository(Menu).find();
+    getMenu(): Promise<any[]> {
+        return createQueryBuilder("Menu")
+            .innerJoinAndSelect("Menu.product", "product")           
+            .getMany();
     }
 
     async save(menu: Menu): Promise<boolean> {
