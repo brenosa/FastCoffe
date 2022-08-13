@@ -103,9 +103,9 @@
       </md-dialog-actions>
     </md-dialog>
     <md-dialog :md-active.sync="showErrorDialog">
-      <md-dialog-title>Falha!</md-dialog-title>
+      <md-dialog-title>Falha! {{ errorMessage }}</md-dialog-title>
       <md-dialog-actions>
-        <md-button class="md-primary" @click="showErrorDialog = false">OK</md-button>
+        <md-button class="md-accent" @click="showErrorDialog = false">OK</md-button>
       </md-dialog-actions>
     </md-dialog>
   </div>
@@ -128,7 +128,8 @@ export default {
       showCreateDialog: false,
       showUpdateDialog: false,
       showDeleteDialog: false,
-      showErrorDialog: false,
+      showErrorDialog: false,      
+      errorMessage: ""
     }
   },
   created() {
@@ -138,7 +139,6 @@ export default {
   methods: {
     selectMenuItem(selectedMenuId) {
       this.updatedMenuItem = this.menuItems.filter(p => p.id === selectedMenuId)[0];
-
       console.log('this.updatedMenuItem', this.updatedMenuItem)
     },
     getMenuItems() {
@@ -168,6 +168,7 @@ export default {
             this.showCreateDialog = true;
             this.getMenuItems();
           } else {
+            this.errorMessage = "Produto já existe no cardápio!"
             this.showErrorDialog = true;
           }
         }).catch((error) => {

@@ -64,7 +64,7 @@
                 </md-input>
               </md-field>
             </div>
-         
+
             <div class="md-layout md-gutter">
               <div class="md-layout-item">
                 <md-button class="md-lg" @click="updateProduct">
@@ -100,8 +100,8 @@
         <md-button class="md-primary" @click="showDeleteDialog = false">OK</md-button>
       </md-dialog-actions>
     </md-dialog>
-    <md-dialog :md-active.sync="showErrorDialog">
-      <md-dialog-title>Falha!</md-dialog-title>
+  <md-dialog :md-active.sync="showErrorDialog">
+    <md-dialog-title>Falha! {{ errorMessage }}</md-dialog-title>
       <md-dialog-actions>
         <md-button class="md-primary" @click="showErrorDialog = false">OK</md-button>
       </md-dialog-actions>
@@ -122,6 +122,7 @@ export default {
       showUpdateDialog: false,
       showDeleteDialog: false,
       showErrorDialog: false,
+      errorMessage: ""
     }
   },
   created() {
@@ -147,7 +148,7 @@ export default {
           console.log('product', product);
           if (product.data) {
             this.showCreateDialog = true;
-             this.getAllProducts();
+            this.getAllProducts();
           } else {
             this.showErrorDialog = true;
           }
@@ -163,7 +164,7 @@ export default {
           console.log('product', product);
           if (product.data) {
             this.showUpdateDialog = true;
-             this.getAllProducts();
+            this.getAllProducts();
           } else {
             this.showErrorDialog = true;
           }
@@ -179,8 +180,9 @@ export default {
           console.log('product', product);
           if (product.data) {
             this.showDeleteDialog = true;
-             this.getAllProducts();
+            this.getAllProducts();
           } else {
+            this.errorMessage = "Produto não pode ser removido, está cadastrado no cardápio"
             this.showErrorDialog = true;
           }
         }).catch((error) => {

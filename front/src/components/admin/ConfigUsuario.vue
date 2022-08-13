@@ -84,6 +84,12 @@
         <md-button class="md-primary" @click="showDialog = false">OK</md-button>
       </md-dialog-actions>
     </md-dialog>
+    <md-dialog :md-active.sync="showErrorDialog">
+      <md-dialog-title>Falha ao cadastrar usuário! Usuário já existe.</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="showErrorDialog = false">OK</md-button>
+      </md-dialog-actions>
+    </md-dialog>
   </div>
 </template>
 
@@ -94,7 +100,8 @@ export default {
   data() {
     return {
       newUser: {},
-      showDialog: false
+      showDialog: false,
+      showErrorDialog: false
     }
   },
   methods: {
@@ -102,9 +109,11 @@ export default {
       axios
         .put(process.env.VUE_APP_SERVER_URL + "user", this.newUser)
         .then((user) => {
-          console.log('user', user);
-          this.showDialog = true;
-
+          if (user.data) {
+            this.showDialog = true;
+          } else {
+            this.showErrorDialog = true;
+          }
         }).catch((error) => {
           console.log(error);
         });
