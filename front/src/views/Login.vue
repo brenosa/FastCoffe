@@ -73,7 +73,7 @@ export default {
             sessionStorage.setItem('user', JSON.stringify(user.data));
             this.$router.push({ name: 'administracao' })
           } else {
-            sessionStorage.setItem('logged', 'false');
+           sessionStorage.removeItem('user');
             this.showDialog = true;
           }
         }).catch((error) => {

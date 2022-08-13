@@ -135,10 +135,6 @@ export default {
     this.getMenuItems();
     this.getAllProducts();
   },
-  mounted() {
-    this.getAllProducts();
-    console.log('getAllProducts')
-  },
   methods: {
     selectMenuItem(selectedMenuId) {
       this.updatedMenuItem = this.menuItems.filter(p => p.id === selectedMenuId)[0];
